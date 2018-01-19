@@ -51,7 +51,15 @@ class Request extends ZendRequest implements RequestInterface
     {
         $params = $this->getQueryParams();
 
-        return array_key_exists($key, $params) ? $params[$key] : $default;
+        return $this->has($key) ? $params[$key] : $default;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasQueryParam(string $key): bool
+    {
+        return array_key_exists($key, $this->getQueryParams());
     }
 
     /**
@@ -72,6 +80,14 @@ class Request extends ZendRequest implements RequestInterface
         }
 
         return $default;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function has(string $key): bool
+    {
+        return $this !== $this->get($key, $this);
     }
 
     /**

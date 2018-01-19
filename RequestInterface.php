@@ -44,6 +44,15 @@ interface RequestInterface extends ServerRequestInterface
     public function getQueryParam(string $key, $default = null);
 
     /**
+     * Checks the query parameter has the given key.
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function hasQueryParam(string $key): bool;
+
+    /**
      * Gets the "parameter" value from any.
      *
      * @param string $key
@@ -52,4 +61,13 @@ interface RequestInterface extends ServerRequestInterface
      * @return mixed
      */
     public function get(string $key, $default = null);
+
+    /**
+     * Checks the has any parameter with given key.
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function has(string $key): bool;
 }
